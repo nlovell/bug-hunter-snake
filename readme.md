@@ -50,6 +50,20 @@ More Oreos appear on-screen
 
 Hershey ups the gamespeed by 1 (sugar!)
 
+#### Paddle
+
+Inverts Caterbug direction
+
+
+#### Slingshot
+
+Speeds you up
+
+
+#### Astronaut Helmet
+
+Slows you down
+
 ### Food Types
 
 - Pebbles
@@ -57,13 +71,7 @@ Hershey ups the gamespeed by 1 (sugar!)
 - Oreos
 - Apples
 
-
-
  toddler powerup speeds you up and cosy astro powerup slows you down
  
 
- I guess we could include some items with negative effects too
- a paddle which makes you go backwards :joy:
-maybe the caterbug should eat pebbles and pancakes-
 
- There could even be a sweet nothing powerup that makes more Oreos appear on screen or something
