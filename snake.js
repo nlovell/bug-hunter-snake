@@ -227,6 +227,7 @@ function move_snake() {
   const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
   if (has_eaten_food) {
     score += 1;
+    gameSpeed += 5;
     document.getElementById("score").innerHTML = score;
     gen_food();
   } else {
