@@ -34,9 +34,9 @@ function gridToPx(_grid) {
 }
 
 let snake = [
-  { img: bugseg, x: gridToPx(10), y: gridToPx(10) },
-  { img: bugseg, x: gridToPx(11), y: gridToPx(11) },
-  { img: bugseg, x: gridToPx(12), y: gridToPx(12) },
+  { img: bugseg, x: gridToPx(3), y: gridToPx(3) },
+  { img: bugseg, x: gridToPx(4), y: gridToPx(3) },
+  { img: bugseg, x: gridToPx(5), y: gridToPx(3) },
 ];
 
 let score = 0;
