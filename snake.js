@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const snake_col = 'lightblue';
     const snake_border = 'darkblue';
     
+
+    // Converts grid location to pixels for rendering
     function gridToPx(_grid){
         return _grid * 10;
     }
@@ -44,7 +46,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // main function called repeatedly to keep the game running
     function main() {
 
-        if (has_game_ended()) return;
+        if (has_game_ended()) {
+            document.getElementById('score').innerHTML = "final score: " + score;
+
+            return;
+        }
 
         changing_direction = false;
         setTimeout(function onTick() {
@@ -91,9 +97,9 @@ document.addEventListener("DOMContentLoaded", function () {
       snakeboard_ctx.strokestyle = snake_border;
       // Draw a "filled" rectangle to represent the snake part at the coordinates
       // the part is located
-      snakeboard_ctx.fillRect(snakePart.x, snakePart.y, 10, 10);
+      snakeboard_ctx.fillRect(snakePart.x, snakePart.y, gridToPx(1), gridToPx(1));
       // Draw a border around the snake part
-      snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, 10, 10);
+      snakeboard_ctx.strokeRect(snakePart.x, snakePart.y, gridToPx(1), gridToPx(1));
     }
 
     function has_game_ended() {
@@ -101,21 +107,21 @@ document.addEventListener("DOMContentLoaded", function () {
         if (snake[i].x === snake[0].x && snake[i].y === snake[0].y) return true
       }
       const hitLeftWall = snake[0].x < 0;
-      const hitRightWall = snake[0].x > snakeboard.width - 10;
+      const hitRightWall = snake[0].x > snakeboard.width - gridToPx(1);
       const hitToptWall = snake[0].y < 0;
-      const hitBottomWall = snake[0].y > snakeboard.height - 10;
+      const hitBottomWall = snake[0].y > snakeboard.height - gridToPx(1);
       return hitLeftWall || hitRightWall || hitToptWall || hitBottomWall
     }
 
     function random_food(min, max) {
-      return Math.round((Math.random() * (max-min) + min) / 10) * 10;
+      return Math.round((Math.random() * (max-min) + min) / gridToPx(1)) * gridToPx(1);
     }
 
     function gen_food() {
       // Generate a random number the food x-coordinate
-      food_x = random_food(0, snakeboard.width - 10);
+      food_x = random_food(0, snakeboard.width - gridToPx(1));
       // Generate a random number for the food y-coordinate
-      food_y = random_food(0, snakeboard.height - 10);
+      food_y = random_food(0, snakeboard.height - gridToPx(1));
       // if the new food location is where the snake currently is, generate a new food location
       snake.forEach(function has_snake_eaten_food(part) {
         const has_eaten = part.x == food_x && part.y == food_y;
@@ -134,25 +140,25 @@ document.addEventListener("DOMContentLoaded", function () {
       if (changing_direction) return;
       changing_direction = true;
       const keyPressed = event.keyCode;
-      const goingUp = dy === -10;
-      const goingDown = dy === 10;
-      const goingRight = dx === 10;
-      const goingLeft = dx === -10;
+      const goingUp = dy === -gridToPx(1);
+      const goingDown = dy === gridToPx(1);
+      const goingRight = dx === gridToPx(1);
+      const goingLeft = dx === -gridToPx(1);
       if (keyPressed === LEFT_KEY && !goingRight) {
-        dx = -10;
+        dx = -gridToPx(1);
         dy = 0;
       }
       if (keyPressed === UP_KEY && !goingDown) {
         dx = 0;
-        dy = -10;
+        dy = -gridToPx(1);
       }
       if (keyPressed === RIGHT_KEY && !goingLeft) {
-        dx = 10;
+        dx = gridToPx(1);
         dy = 0;
       }
       if (keyPressed === DOWN_KEY && !goingUp) {
         dx = 0;
-        dy = 10;
+        dy = gridToPx(1);
       }
     }
 
@@ -164,7 +170,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const has_eaten_food = snake[0].x === food_x && snake[0].y === food_y;
       if (has_eaten_food) {
         // Increase score
-        score += 10;
+        score += 1;
         // Display score on screen
         document.getElementById('score').innerHTML = score;
         // Generate new food location
