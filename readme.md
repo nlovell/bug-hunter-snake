@@ -1,9 +1,9 @@
 # Bug Hunting
 
-A Snake-Like game for the Bug Hunter community.
+A Snake-Like game for the Bug Hunter community. Cobbled together during a voice chat with several friends - still needs a lot of work to be functional or even good.
 
 
-## Initial Draft
+## Notes
 
 ### Power-ups
 
